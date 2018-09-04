@@ -36,32 +36,46 @@ client.on('ready', () => {
 
 
 
-const adminprefix = "e";
+
 const id = ['454527533279608852'];
 client.on('message', message => {
-  var argresult = message.content.split(` `).slice(1).join(' ');
-    if (!id.includes(message.author.id)) return;
-    
-if (message.content.startsWith(adminprefix + 'setgame')) {
-  client.user.setGame(argresult);
-    message.channel.sendMessage(`**${argresult} تم تغيير بلاينق البوت إلى **`)
-} else 
-  if (message.content.startsWith(adminprefix + 'setname')) {
-client.user.setUsername(argresult).then
-    message.channel.sendMessage(`**${argresult}** : تم تغيير أسم البوت إلى`)
-return message.reply("**لا يمكنك تغيير الاسم يجب عليك الانتظآر لمدة ساعتين . **");
+    var argresult = message.content.split(` `).slice(1).join(' ');
+      if (!id.includes(message.author.id)) return;
+      
+  if (message.content.startsWith(prefix + 'setplaying')) {
+    client.user.setGame(argresult);
+      message.channel.send(`**✅   ${argresult}**`)
+  } else 
+  if (message.content.startsWith(prefix + 'setwatching')) {
+  client.user.setActivity(argresult, {type:'WATCHING'});
+      message.channel.send(`**✅   ${argresult}**`)
+  } else 
+  if (message.content.startsWith(prefix + 'setliste')) {
+  client.user.setActivity(argresult , {type:'LISTENING'});
+      message.channel.send(`**✅   ${argresult}**`)
+  } else 
+  if (message.content.startsWith(prefix + 'setstrem')) {
+    client.user.setGame(argresult, "https://www.twitch.tv/idk");
+      message.channel.send(`**✅**`)
+  }
+  if (message.content.startsWith(prefix + 'setname')) {
+  client.user.setUsername(argresult).then
+      message.channel.send(`Changing The Name To ..**${argresult}** `)
 } else
-  if (message.content.startsWith(adminprefix + 'setavatar')) {
-client.user.setAvatar(argresult);
-  message.channel.sendMessage(`**${argresult}** : تم تغير صورة البوت`);
-      } else     
-if (message.content.startsWith(adminprefix + 'setstrem')) {
-  client.user.setGame(argresult, "https://www.twitch.tv/idk");
-    message.channel.sendMessage(`**تم تغيير تويتش البوت إلى  ${argresult}**`)
+if (message.content.startsWith(prefix + 'setavatar')) {
+  client.user.setAvatar(argresult);
+    message.channel.send(`Changing The Avatar To :**${argresult}** `);
 }
+});
+client.on('message', message => {
+    var argresult = message.content.split(` `).slice(1).join(' ');
+      if (!id.includes(message.author.id)) return;
+      
+     if (message.content === (prefix + "levebot")) {
+    message.guild.leave();        
+  } else  
 
 });
-
 
 
 client.on('message', message => {
@@ -76,14 +90,13 @@ client.on('message', message => {
 
  message.author.sendMessage(`
 
-esetgame
-
-esetname
-
-esetavatar
-
-esetstrem
-
+setplaying
+setwatching
+setliste
+setstrem
+setname
+setavatar
+levebot
 
 `);
 
