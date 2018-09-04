@@ -27,16 +27,6 @@ client.on('ready', () => {
   console.log('')
 });
 
-
-
-
-
-
-
-
-
-
-
 const id = ['454527533279608852'];
 client.on('message', message => {
     var argresult = message.content.split(` `).slice(1).join(' ');
@@ -46,6 +36,9 @@ client.on('message', message => {
     client.user.setGame(argresult);
       message.channel.send(`**✅   ${argresult}**`)
   } else 
+     if (message.content === (prefix + "levebot")) {
+    message.guild.leave();        
+  } else  
   if (message.content.startsWith(prefix + 'setwatching')) {
   client.user.setActivity(argresult, {type:'WATCHING'});
       message.channel.send(`**✅   ${argresult}**`)
@@ -67,15 +60,7 @@ if (message.content.startsWith(prefix + 'setavatar')) {
     message.channel.send(`Changing The Avatar To :**${argresult}** `);
 }
 });
-client.on('message', message => {
-    var argresult = message.content.split(` `).slice(1).join(' ');
-      if (!id.includes(message.author.id)) return;
-      
-     if (message.content === (prefix + "levebot")) {
-    message.guild.leave();        
-  } else  
-
-});
+	
   client.on('message', async message => {
             if(!message.channel.guild) return;
              if (message.content.startsWith(prefix + "setstatus")) {
@@ -108,12 +93,7 @@ client.on('message', message => {
     if (message.author.bot) return;
      if (message.content === prefix + "help") {
      if (!id.includes(message.author.id)) return;
-		 message.channel.send('**The Message Was Sent On Private**');
             
-	
-		 
-
-
  message.author.sendMessage(`
 
 setplaying
